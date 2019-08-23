@@ -9,7 +9,7 @@
         <version>0.1</version>
     </parent>
 
-    <groupId>org.talend.dataprep.mn.api</groupId>
+    <groupId>org.talend.dataprep.mn</groupId>
     <artifactId>api</artifactId>
     <version>0.1</version>
     <properties>
