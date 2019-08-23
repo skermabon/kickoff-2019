@@ -12,6 +12,5 @@
     <module>preparation</module>
     <module>folder</module>
     <module>common</module>
-      <module>common</module>
   </modules>
 </project>
