@@ -1,0 +1,13 @@
+@startuml
+
+actor "API User" as API_USER
+
+node "API service" as API
+node "Folder service" as FOLDER
+node "Preparation service" as PREPARATION
+
+API_USER <--> API : call
+API <--> FOLDER : redirect
+API <--> PREPARATION : redirect
+
+@enduml
