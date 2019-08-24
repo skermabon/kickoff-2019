@@ -39,6 +39,14 @@ import java.util.UUID;
         return Single.fromPublisher(getCollection().insertOne(folder)).map(success -> folder);
     }
 
+    public Single<Folder> update(Folder folder) {
+        return Single.fromPublisher(getCollection().replaceOne(Filters.eq("_id", folder.getId()), folder)).map(success -> folder);
+    }
+
+    public void delete(String id) {
+        getCollection().deleteMany(Filters.eq("_id", id));
+    }
+
     private MongoCollection<Folder> getCollection() {
         return mongoClient.getDatabase(configuration.getDatabaseName()).getCollection(FOLDER_COLLECTION, Folder.class);
     }
