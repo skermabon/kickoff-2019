@@ -87,6 +87,18 @@
             <artifactId>micronaut-test-junit5</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.talend.dataprep.mn.common</groupId>
+            <artifactId>common</artifactId>
+            <version>0.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.flapdoodle.embed</groupId>
+            <artifactId>de.flapdoodle.embed.mongo</artifactId>
+            <version>2.1.2</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

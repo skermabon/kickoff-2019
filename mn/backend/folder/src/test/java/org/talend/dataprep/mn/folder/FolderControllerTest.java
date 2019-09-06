@@ -1,8 +1,5 @@
 package org.talend.dataprep.mn.folder;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mongodb.reactivestreams.client.MongoClient;
 import io.micronaut.core.type.Argument;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.client.HttpClient;
@@ -14,8 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.talend.dataprep.mn.common.Folder;
 
 import javax.inject.Inject;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

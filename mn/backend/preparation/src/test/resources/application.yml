@@ -3,3 +3,6 @@ micronaut:
     name: preparation
   server:
     port: 7002
+
+mongodb:
+  uri: mongodb://localhost:27018/kickoff-2019
