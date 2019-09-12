@@ -9,7 +9,6 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.PathVariable;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.Put;
-import io.reactivex.Maybe;
 import io.reactivex.Single;
 import org.talend.kickoff.mn.common.Comicbook;
 import org.talend.kickoff.mn.common.ComicbookRepository;
@@ -31,8 +30,14 @@ public class ComicbookController {
     }
 
     @Get(value = "/{id}", produces = MediaType.APPLICATION_JSON)
-    public HttpResponse<Maybe<Comicbook>> get(@PathVariable String id) {
-        return HttpResponse.ok(comicbookRepository.get(id));
+    public HttpResponse<Comicbook> get(@PathVariable String id) {
+        Comicbook comicbook = comicbookRepository.get(id).blockingGet();
+        if (comicbook != null) {
+            return HttpResponse.ok(comicbook);
+        }
+        else {
+            return HttpResponse.notFound();
+        }
     }
 
     @Post(value = "/", consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON)
