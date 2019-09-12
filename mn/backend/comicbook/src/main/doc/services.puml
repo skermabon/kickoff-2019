@@ -1,0 +1,13 @@
+@startuml
+
+actor "API User" as API_USER
+
+node "API service" as API
+node "Comicbook service" as COMICBOOK
+node "Person service" as PERSON
+
+API_USER <--> API : call
+API <--> COMICBOOK : redirect
+API <--> PERSON : redirect
+
+@enduml

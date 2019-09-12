@@ -1,5 +1,0 @@
-profile: service
-defaultPackage: org.talend.dataprep.mn.preparation
----
-testFramework: junit
-sourceLanguage: java

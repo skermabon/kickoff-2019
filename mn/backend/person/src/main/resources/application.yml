@@ -1,0 +1,8 @@
+micronaut:
+  application:
+    name: person
+  server:
+    port: 7002
+
+mongodb:
+  uri: mongodb://kickoff:kickoff@localhost:27017/kickoff-2019

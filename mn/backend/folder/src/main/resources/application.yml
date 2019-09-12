@@ -1,8 +1,0 @@
-micronaut:
-  application:
-    name: folder
-  server:
-    port: 7001
-
-mongodb:
-  uri: mongodb://dataprep:dataprep@localhost:27017/kickoff-2019

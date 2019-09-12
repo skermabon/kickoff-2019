@@ -9,8 +9,8 @@
         <version>0.1</version>
     </parent>
 
-    <groupId>org.talend.kickoff.mn</groupId>
-    <artifactId>api</artifactId>
+    <groupId>org.talend.kickoff.mn.person</groupId>
+    <artifactId>person</artifactId>
     <version>0.1</version>
     <properties>
         <micronaut.version>1.2.0</micronaut.version>
@@ -19,7 +19,7 @@
         <maven.compiler.source>${jdk.version}</maven.compiler.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <exec.mainClass>org.talend.kickoff.mn.api.Application</exec.mainClass>
+        <exec.mainClass>org.talend.kickoff.mn.person.Application</exec.mainClass>
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
     </properties>
@@ -92,6 +92,12 @@
             <artifactId>common</artifactId>
             <version>0.1</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.flapdoodle.embed</groupId>
+            <artifactId>de.flapdoodle.embed.mongo</artifactId>
+            <version>2.1.2</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <build>

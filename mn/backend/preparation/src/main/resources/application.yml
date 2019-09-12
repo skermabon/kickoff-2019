@@ -1,5 +1,0 @@
-micronaut:
-  application:
-    name: preparation
-  server:
-    port: 7002
