@@ -17,7 +17,7 @@ public class ComicbookController {
 
     @Inject ComicbookRepository comicbookRepository;
 
-    @GET public CompletionStage<List<Comicbook>> getAll() {
+    @GET @Path("/") public CompletionStage<List<Comicbook>> getAll() {
         return comicbookRepository.list();
     }
 

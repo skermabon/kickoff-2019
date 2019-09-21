@@ -3,11 +3,12 @@
 actor "API User" as API_USER
 
 node "API service" as API
-node "Comicbook service" as COMICBOOK
+node "Comic book service" as COMICBOOK
 node "Person service" as PERSON
 
-API_USER <--> API : call
-API <--> COMICBOOK : redirect
-API <--> PERSON : redirect
+API_USER <--> API : HTTP
+API <--> COMICBOOK : HTTP
+API <--> PERSON : HTTP
+COMICBOOK <--> PERSON : Messages
 
 @enduml

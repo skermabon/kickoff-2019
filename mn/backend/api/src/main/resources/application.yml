@@ -3,3 +3,11 @@ micronaut:
     name: api
   server:
     port: 7000
+  http:
+    services:
+      comicbook:
+        urls:
+          - http://localhost:7001/
+      person:
+        urls:
+          - http://localhost:7002/

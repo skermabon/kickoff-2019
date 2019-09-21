@@ -8,6 +8,7 @@ import io.reactivex.Maybe;
 import io.reactivex.Single;
 
 import javax.inject.Singleton;
+import java.util.List;
 import java.util.UUID;
 
 @Singleton public class PersonRepository {
@@ -23,8 +24,8 @@ import java.util.UUID;
         this.configuration = configuration;
     }
 
-    public Flowable<Person> list() {
-        return Flowable.fromPublisher(getCollection().find());
+    public Single<List<Person>> list() {
+        return Flowable.fromPublisher(getCollection().find()).toList();
     }
 
     public Maybe<Person> get(String id) {
@@ -44,7 +45,7 @@ import java.util.UUID;
     }
 
     public void delete(String id) {
-        getCollection().deleteMany(Filters.eq("_id", id));
+        Single.fromPublisher(getCollection().deleteMany(Filters.eq("_id", id))).blockingGet();
     }
 
     private MongoCollection<Person> getCollection() {

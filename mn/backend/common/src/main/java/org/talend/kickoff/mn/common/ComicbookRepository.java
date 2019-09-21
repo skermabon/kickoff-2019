@@ -45,7 +45,7 @@ import java.util.UUID;
     }
 
     public void delete(String id) {
-        getCollection().deleteMany(Filters.eq("_id", id));
+        Single.fromPublisher(getCollection().deleteOne(Filters.eq("_id", id))).blockingGet();
     }
 
     private MongoCollection<Comicbook> getCollection() {
