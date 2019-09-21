@@ -1,0 +1,13 @@
+micronaut:
+  application:
+    name: api
+  server:
+    port: 8000
+  http:
+    services:
+      comicbook:
+        urls:
+          - http://localhost:8001/
+      person:
+        urls:
+          - http://localhost:8002/

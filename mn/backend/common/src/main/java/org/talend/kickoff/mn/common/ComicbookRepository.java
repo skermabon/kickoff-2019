@@ -13,7 +13,8 @@ import io.reactivex.Flowable;
 import io.reactivex.Maybe;
 import io.reactivex.Single;
 
-@Singleton public class ComicbookRepository {
+@Singleton
+public class ComicbookRepository {
 
     public static final String COMICBOOK_COLLECTION = "comicbook";
 
@@ -42,8 +43,9 @@ import io.reactivex.Single;
     }
 
     public Single<Comicbook> update(Comicbook comicbook) {
-        return Single.fromPublisher(getCollection().replaceOne(Filters.eq("_id", comicbook.getId()),
-                comicbook)).map(success -> comicbook);
+        return Single
+                .fromPublisher(getCollection().replaceOne(Filters.eq("_id", comicbook.getId()), comicbook))
+                .map(success -> comicbook);
     }
 
     public void delete(String id) {
@@ -51,6 +53,8 @@ import io.reactivex.Single;
     }
 
     private MongoCollection<Comicbook> getCollection() {
-        return mongoClient.getDatabase(configuration.getDatabaseName()).getCollection(COMICBOOK_COLLECTION, Comicbook.class);
+        return mongoClient
+                .getDatabase(configuration.getDatabaseName())
+                .getCollection(COMICBOOK_COLLECTION, Comicbook.class);
     }
 }

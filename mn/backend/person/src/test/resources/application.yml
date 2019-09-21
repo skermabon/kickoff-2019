@@ -2,7 +2,7 @@ micronaut:
   application:
     name: person
   server:
-    port: 7002
+    port: 8002
 
 mongodb:
   uri: mongodb://localhost:27018/kickoff-2019
