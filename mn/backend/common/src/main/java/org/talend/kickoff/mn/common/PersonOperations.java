@@ -1,5 +1,7 @@
 package org.talend.kickoff.mn.common;
 
+import java.util.List;
+
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Body;
@@ -9,11 +11,10 @@ import io.micronaut.http.annotation.PathVariable;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.Put;
 
-import java.util.List;
-
 public interface PersonOperations {
 
-    @Get(value = "/", produces = MediaType.APPLICATION_JSON) public HttpResponse<List<Person>> list();
+    @Get(value = "/", produces = MediaType.APPLICATION_JSON)
+    public HttpResponse<List<Person>> list();
 
     @Get(value = "/{id}", produces = MediaType.APPLICATION_JSON)
     public HttpResponse<Person> get(@PathVariable String id);
@@ -24,5 +25,6 @@ public interface PersonOperations {
     @Put(value = "/{id}", consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON)
     public HttpResponse<Person> put(@PathVariable String id, @Body Person Person);
 
-    @Delete(value = "/{id}") public HttpResponse delete(@PathVariable String id);
+    @Delete(value = "/{id}")
+    public HttpResponse delete(@PathVariable String id);
 }

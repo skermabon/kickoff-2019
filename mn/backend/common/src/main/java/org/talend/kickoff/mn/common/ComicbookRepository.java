@@ -1,15 +1,17 @@
 package org.talend.kickoff.mn.common;
 
+import java.util.List;
+import java.util.UUID;
+
+import javax.inject.Singleton;
+
 import com.mongodb.client.model.Filters;
 import com.mongodb.reactivestreams.client.MongoClient;
 import com.mongodb.reactivestreams.client.MongoCollection;
+
 import io.reactivex.Flowable;
 import io.reactivex.Maybe;
 import io.reactivex.Single;
-
-import javax.inject.Singleton;
-import java.util.List;
-import java.util.UUID;
 
 @Singleton public class ComicbookRepository {
 

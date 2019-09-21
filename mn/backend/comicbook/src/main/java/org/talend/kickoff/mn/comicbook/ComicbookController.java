@@ -1,16 +1,18 @@
 package org.talend.kickoff.mn.comicbook;
 
-import io.micronaut.http.HttpResponse;
-import io.micronaut.http.annotation.Body;
-import io.micronaut.http.annotation.Controller;
-import io.micronaut.http.annotation.PathVariable;
+import java.util.List;
+
 import org.talend.kickoff.mn.common.Comicbook;
 import org.talend.kickoff.mn.common.ComicbookOperations;
 import org.talend.kickoff.mn.common.ComicbookRepository;
 
-import java.util.List;
+import io.micronaut.http.HttpResponse;
+import io.micronaut.http.annotation.Body;
+import io.micronaut.http.annotation.Controller;
+import io.micronaut.http.annotation.PathVariable;
 
-@Controller("/comicbook/v1/comicbooks") public class ComicbookController implements ComicbookOperations {
+@Controller("/comicbook/v1/comicbooks")
+public class ComicbookController implements ComicbookOperations {
 
     private ComicbookRepository comicbookRepository;
 
@@ -18,7 +20,8 @@ import java.util.List;
         this.comicbookRepository = comicbookRepository;
     }
 
-    @Override public HttpResponse<List<Comicbook>> list() {
+    @Override
+    public HttpResponse<List<Comicbook>> list() {
         return HttpResponse.ok(comicbookRepository.list().blockingGet());
     }
 
@@ -27,23 +30,24 @@ import java.util.List;
         Comicbook comicbook = comicbookRepository.get(id).blockingGet();
         if (comicbook != null) {
             return HttpResponse.ok(comicbook);
-        }
-        else {
+        } else {
             return HttpResponse.notFound();
         }
     }
 
-    @Override public HttpResponse<Comicbook> post(@Body Comicbook person) {
+    @Override
+    public HttpResponse<Comicbook> post(@Body Comicbook person) {
         return HttpResponse.created(comicbookRepository.create(person).blockingGet());
     }
 
-    @Override public HttpResponse<Comicbook> put(@PathVariable String id, @Body Comicbook comicbook) {
+    @Override
+    public HttpResponse<Comicbook> put(@PathVariable String id, @Body Comicbook comicbook) {
         return HttpResponse.ok(comicbookRepository.update(comicbook).blockingGet());
     }
 
-    @Override public HttpResponse delete(@PathVariable String id) {
+    @Override
+    public HttpResponse delete(@PathVariable String id) {
         comicbookRepository.delete(id);
         return HttpResponse.noContent();
     }
 }
-

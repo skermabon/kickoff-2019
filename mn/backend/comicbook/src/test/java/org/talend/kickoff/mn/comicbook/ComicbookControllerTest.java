@@ -1,26 +1,30 @@
 package org.talend.kickoff.mn.comicbook;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.talend.kickoff.mn.common.Comicbook;
+
 import io.micronaut.core.type.Argument;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.client.HttpClient;
 import io.micronaut.http.client.annotation.Client;
 import io.micronaut.runtime.server.EmbeddedServer;
 import io.micronaut.test.annotation.MicronautTest;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.talend.kickoff.mn.common.Comicbook;
-
-import javax.inject.Inject;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @MicronautTest public class ComicbookControllerTest {
 
     @Inject EmbeddedServer server;
 
-    @Inject @Client("/comicbook/v1/comicbooks") HttpClient client;
+    @Inject
+    @Client("/comicbook/v1/comicbooks")
+    HttpClient client;
 
     @BeforeAll static void setup() throws Exception {
     }

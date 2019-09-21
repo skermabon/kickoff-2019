@@ -1,5 +1,10 @@
 package org.talend.kickoff.mn.api;
 
+import java.util.List;
+
+import org.talend.kickoff.mn.common.Person;
+import org.talend.kickoff.mn.common.PersonClient;
+
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Body;
@@ -9,15 +14,9 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.PathVariable;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.Put;
-import io.reactivex.Maybe;
-import io.reactivex.Single;
-import org.talend.kickoff.mn.common.Comicbook;
-import org.talend.kickoff.mn.common.Person;
-import org.talend.kickoff.mn.common.PersonClient;
 
-import java.util.List;
-
-@Controller("/api/v1/persons/") public class APIPersonController {
+@Controller("/api/v1/persons/")
+public class APIPersonController {
 
     private final PersonClient client;
 
@@ -25,7 +24,8 @@ import java.util.List;
         this.client = client;
     }
 
-    @Get(value = "/", produces = MediaType.APPLICATION_JSON) public HttpResponse<List<Person>> list() {
+    @Get(value = "/", produces = MediaType.APPLICATION_JSON)
+    public HttpResponse<List<Person>> list() {
         return client.list();
     }
 
@@ -44,7 +44,8 @@ import java.util.List;
         return client.put(id, person);
     }
 
-    @Delete(value = "/{id}") public HttpResponse delete(@PathVariable String id) {
+    @Delete(value = "/{id}")
+    public HttpResponse delete(@PathVariable String id) {
         return client.delete(id);
     }
 

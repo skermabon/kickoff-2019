@@ -1,17 +1,20 @@
 package org.talend.kickoff.mn.common;
 
+import java.util.List;
+import java.util.UUID;
+
+import javax.inject.Singleton;
+
 import com.mongodb.client.model.Filters;
 import com.mongodb.reactivestreams.client.MongoClient;
 import com.mongodb.reactivestreams.client.MongoCollection;
+
 import io.reactivex.Flowable;
 import io.reactivex.Maybe;
 import io.reactivex.Single;
 
-import javax.inject.Singleton;
-import java.util.List;
-import java.util.UUID;
-
-@Singleton public class PersonRepository {
+@Singleton
+public class PersonRepository {
 
     public static final String PERSON_REPOSITORY = "person";
 
@@ -40,8 +43,9 @@ import java.util.UUID;
     }
 
     public Single<Person> update(Person Person) {
-        return Single.fromPublisher(getCollection().replaceOne(Filters.eq("_id", Person.getId()),
-                Person)).map(success -> Person);
+        return Single
+                .fromPublisher(getCollection().replaceOne(Filters.eq("_id", Person.getId()), Person))
+                .map(success -> Person);
     }
 
     public void delete(String id) {

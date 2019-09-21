@@ -1,32 +1,41 @@
 package org.talend.kickoff.mn.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.junit.jupiter.api.Test;
+import org.talend.kickoff.mn.common.Person;
+
 import io.micronaut.core.type.Argument;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.client.HttpClient;
 import io.micronaut.http.client.annotation.Client;
 import io.micronaut.runtime.server.EmbeddedServer;
 import io.micronaut.test.annotation.MicronautTest;
-import org.junit.jupiter.api.Test;
-import org.talend.kickoff.mn.common.Person;
 
-import javax.inject.Inject;
-import java.util.List;
+@MicronautTest
+class PersonControllerTest {
 
-import static org.junit.jupiter.api.Assertions.*;
+    @Inject
+    EmbeddedServer server;
 
-@MicronautTest class PersonControllerTest {
+    @Inject
+    @Client("/person/v1/persons")
+    HttpClient client;
 
-    @Inject EmbeddedServer server;
-
-    @Inject @Client("/person/v1/persons") HttpClient client;
-
-    @Test void emptyList() throws Exception {
+    @Test
+    void emptyList() throws Exception {
         String retrieve = client.toBlocking().retrieve(HttpRequest.GET(""), String.class);
         assertNotNull(retrieve);
         assertEquals("[]", retrieve);
     }
 
-    @Test void crud() throws Exception {
+    @Test
+    void crud() throws Exception {
         // create
         Person Person = new Person();
         Person.setFirstname("Clark");
@@ -42,7 +51,8 @@ import static org.junit.jupiter.api.Assertions.*;
         assertPersonEquals(Person, retrieve, id);
 
         // read list
-        List<Person> retrieves = client.toBlocking().retrieve(HttpRequest.GET("/"), Argument.of(List.class, Person.class));
+        List<Person> retrieves =
+                client.toBlocking().retrieve(HttpRequest.GET("/"), Argument.of(List.class, Person.class));
         assertEquals(1, retrieves.size());
         retrieve = retrieves.get(0);
         assertPersonEquals(Person, retrieve, id);

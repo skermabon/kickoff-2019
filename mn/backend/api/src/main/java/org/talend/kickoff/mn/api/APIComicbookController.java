@@ -1,8 +1,13 @@
 package org.talend.kickoff.mn.api;
 
+import java.util.List;
+
+import org.talend.kickoff.mn.common.Comicbook;
+import org.talend.kickoff.mn.common.ComicbookClient;
+import org.talend.kickoff.mn.common.Person;
+
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;
-import io.micronaut.http.MutableHttpResponse;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Delete;
@@ -10,13 +15,7 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.PathVariable;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.Put;
-import io.reactivex.Maybe;
 import io.reactivex.Single;
-import org.talend.kickoff.mn.common.Comicbook;
-import org.talend.kickoff.mn.common.ComicbookClient;
-import org.talend.kickoff.mn.common.Person;
-
-import java.util.List;
 
 @Controller("/api/v1/comicbooks/")
 public class APIComicbookController {
@@ -46,7 +45,8 @@ public class APIComicbookController {
         return client.put(id, comicbook);
     }
 
-    @Delete(value = "/{id}") public HttpResponse delete(@PathVariable String id) {
+    @Delete(value = "/{id}")
+    public HttpResponse delete(@PathVariable String id) {
         return client.delete(id);
     }
 
