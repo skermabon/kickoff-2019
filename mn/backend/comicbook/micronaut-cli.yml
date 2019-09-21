@@ -1,5 +1,0 @@
-profile: service
-defaultPackage: org.talend.kickoff.mn.comicbook
----
-testFramework: junit
-sourceLanguage: java

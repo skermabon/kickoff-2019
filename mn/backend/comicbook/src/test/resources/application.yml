@@ -1,8 +1,0 @@
-micronaut:
-  application:
-    name: comicbook
-  server:
-    port: 8001
-
-mongodb:
-  uri: mongodb://localhost:27018/kickoff-2019
