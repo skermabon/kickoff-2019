@@ -5,4 +5,4 @@ micronaut:
     port: 7001
 
 mongodb:
-  uri: mongodb://kickoff:kickoff@localhost:27017/kickoff-2019
+  uri: mongodb://localhost:27018/kickoff-2019
