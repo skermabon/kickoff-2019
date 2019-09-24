@@ -8,3 +8,6 @@ micronaut:
       comicbook:
         urls:
           - http://localhost:7001/
+      person:
+        urls:
+          - http://localhost:7002/

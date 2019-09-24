@@ -2,20 +2,17 @@ package org.talend.kickoff.mn.person;
 
 import java.util.List;
 
-import io.micronaut.http.HttpResponse;
-import io.micronaut.http.MediaType;
-import io.micronaut.http.annotation.Body;
-import io.micronaut.http.annotation.Controller;
-import io.micronaut.http.annotation.Delete;
-import io.micronaut.http.annotation.Get;
-import io.micronaut.http.annotation.PathVariable;
-import io.micronaut.http.annotation.Post;
-import io.micronaut.http.annotation.Put;
 import org.talend.kickoff.mn.common.Person;
+import org.talend.kickoff.mn.common.PersonOperations;
 import org.talend.kickoff.mn.common.PersonRepository;
 
+import io.micronaut.http.HttpResponse;
+import io.micronaut.http.annotation.Body;
+import io.micronaut.http.annotation.Controller;
+import io.micronaut.http.annotation.PathVariable;
+
 @Controller("/person/v1/persons")
-public class PersonController {
+public class PersonController implements PersonOperations {
 
     private PersonRepository personRepository;
 
@@ -23,12 +20,12 @@ public class PersonController {
         this.personRepository = PersonRepository;
     }
 
-    @Get(value = "/", produces = MediaType.APPLICATION_JSON)
+    @Override
     public HttpResponse<List<Person>> list() {
         return HttpResponse.ok(personRepository.list().blockingGet());
     }
 
-    @Get(value = "/{id}", produces = MediaType.APPLICATION_JSON)
+    @Override
     public HttpResponse<Person> get(@PathVariable String id) {
         Person person = personRepository.get(id).blockingGet();
         if (person != null) {
@@ -38,17 +35,17 @@ public class PersonController {
         }
     }
 
-    @Post(value = "/", consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON)
+    @Override
     public HttpResponse<Person> post(@Body Person person) {
         return HttpResponse.created(personRepository.create(person).blockingGet());
     }
 
-    @Put(value = "/{id}", consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON)
+    @Override
     public HttpResponse<Person> put(@PathVariable String id, @Body Person person) {
         return HttpResponse.ok(personRepository.update(person).blockingGet());
     }
 
-    @Delete(value = "/{id}")
+    @Override
     public HttpResponse delete(@PathVariable String id) {
         personRepository.delete(id);
         return HttpResponse.noContent();
