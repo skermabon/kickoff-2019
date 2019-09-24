@@ -6,3 +6,6 @@ micronaut:
 
 mongodb:
   uri: mongodb://kickoff:kickoff@localhost:27017/kickoff-2019
+
+kickoff:
+  databaseName: kickoff-2019
