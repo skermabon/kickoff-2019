@@ -9,3 +9,8 @@ mongodb:
 
 kickoff:
   databaseName: kickoff-2019
+
+---
+kafka:
+  bootstrap:
+    servers: localhost:9092

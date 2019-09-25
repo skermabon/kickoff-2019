@@ -2,6 +2,8 @@ package org.talend.kickoff.mn.comicbook;
 
 import java.util.List;
 
+import io.micronaut.http.MediaType;
+import io.micronaut.http.annotation.Post;
 import org.talend.kickoff.mn.common.Comicbook;
 import org.talend.kickoff.mn.common.ComicbookOperations;
 import org.talend.kickoff.mn.common.ComicbookRepository;
@@ -10,6 +12,7 @@ import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.PathVariable;
+import org.talend.kickoff.mn.common.Person;
 
 @Controller("/comicbook/v1/comicbooks")
 public class ComicbookController implements ComicbookOperations {
@@ -49,5 +52,10 @@ public class ComicbookController implements ComicbookOperations {
     public HttpResponse delete(@PathVariable String id) {
         comicbookRepository.delete(id);
         return HttpResponse.noContent();
+    }
+
+    @Post(value = "/{comicbookId}/writer/", consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON)
+    public HttpResponse addWriter(@PathVariable String id, @Body Person person) {
+
     }
 }
