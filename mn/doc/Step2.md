@@ -16,32 +16,32 @@ backend /
 If you have some errors, or if you are late, you can clone the repository and checkout the step2 branch
 
 ```shell
-git clone https://github.com/skermabon/kickoff-2019.git​ 
-git checkout step2
-cd kickoff-2019/mn
+$ git clone https://github.com/skermabon/kickoff-2019.git​ 
+$ git checkout step2
+$ cd kickoff-2019/mn
 ```
 
 Build by Intellij or by maven: 
-~~~~
-cd backend
-mvn clean install
-~~~~
+```shell
+$ cd backend
+$ mvn clean install
+```
 
 Run a class Application (for example the Application in maven module comicbook) or run in a shell:
 ```shell
-cd comicbook
-java -jar target/comicbook-0.1.jar
+$ cd comicbook
+$ java -jar target/comicbook-0.1.jar
 ```
 
 Build a native image with GraalVM:
 * Use GraalVM as current JVM: `sdk use java 19.2.0-grl`
 * Install the GraalVM tool, native-image, that generate native image from a jar: `gu install native-image` 
 * Create a native image: `native-image --no-server -cp target/comicbook-0.1.jar` if you have the following error:
-~~~~
+```shell
 Error: Basic header file missing (<zlib.h>). Make sure headers are available on your system.
 Error: Use -H:+ReportExceptionStackTraces to print stacktrace of underlying exception
 Error: Image build request failed with exit status 1
-~~~~
+```
 
 Add the library zlib: `sudo apt-get install zlib1g-dev`
 
