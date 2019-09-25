@@ -8,7 +8,9 @@ We adding a controller, and a repository for managing Comicbook. Checkout the st
 git checkout step3-start
 ```
 
-### Add a Pojo
+### The Pojo
+
+A simple Pojo that represent a comicbook.
 
 ```java
 public class Comicbook {
@@ -21,10 +23,12 @@ public class Comicbook {
 }
 ```
 
-### Add a repository
+### The repository
+
+A minimal repository for comicbook. We use a reactive mongo client and implement a simple list method.
 
 ```java
-@Singleton
+@Singleton // The repository is a Singleton
 public class ComicbookRepository {
 
     public static final String COMICBOOK_COLLECTION = "comicbook";
@@ -47,7 +51,9 @@ public class ComicbookRepository {
 }
 ```
 
-### Add an endpoint
+### The controller
+
+A minimal controller for comicbook. We inject the repository and add an endpoint to get the list of comicbooks.
 
 ```java
 @Controller("/comicbook/v1/comicbooks")
@@ -66,6 +72,8 @@ public class ComicbookController {
 }
 ```
 ### Test the endpoint
+
+A unit test is created to test the endpoint. When we add the feature 
 
 ```java
 @MicronautTest
