@@ -5,7 +5,7 @@
 We adding a controller, and a repository for managing Comicbook. Checkout the step3-start branch of the project.
 
 ```shell
-git checkout step3-start
+$ git checkout step3-start
 ```
 
 ### The Pojo
@@ -95,18 +95,33 @@ public class ComicbookControllerTest {
 ```
 You can run this test by Maven or in your IDE. The test succeed.
 
-### Run your service
+### Build and run your service and test the endpoint.
 
+Build and run the service by shell:
 ```shell
-java -jar target/comicbook-0.1.jar
+$ mvn clean install
+$ java -jar target/comicbook-0.1.jar
 ```
 
-Now you can add a new endpoint like a GET of one resource (or choose POST a new resource).
+or by your IDE. And test by shell:
+
+```shell
+$ curl -X GET \
+  http://localhost:7001/comicbook/v1/comicbooks \
+  -H 'Accept: application/json' \
+  -H 'Host: localhost:7001' 
+```
+
+or by Postman.
+
+### Exercice (15 minutes)
+
+Now you can add a new endpoint like a POST of one resource. Annotation for a POST endpoint is `@Post` and annotation to get the content of the request is `@Body`.
 
 ### A solution
 
 Checkout the branch step3-final.
 
 ```shell
-git checkout step3-final
+$ git checkout step3-final
 ```
