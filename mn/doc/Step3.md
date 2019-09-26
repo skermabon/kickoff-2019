@@ -97,13 +97,13 @@ You can run this test by Maven or in your IDE. The test succeed.
 
 ### Build and run your service and test the endpoint.
 
-Build and run the service by shell:
+Build and run the service with your IDE, or with shell commands:
 ```shell
 $ mvn clean install
 $ java -jar target/comicbook-0.1.jar
 ```
 
-or by your IDE. And test by shell:
+You can test the endpoint with Postman, or with shell command:
 
 ```shell
 $ curl -X GET \
@@ -111,8 +111,6 @@ $ curl -X GET \
   -H 'Accept: application/json' \
   -H 'Host: localhost:7001' 
 ```
-
-or by Postman.
 
 ### Exercice (15 minutes)
 
