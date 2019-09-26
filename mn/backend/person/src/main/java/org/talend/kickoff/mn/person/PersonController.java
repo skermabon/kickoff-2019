@@ -14,10 +14,13 @@ import io.micronaut.http.annotation.PathVariable;
 @Controller("/person/v1/persons")
 public class PersonController implements PersonOperations {
 
-    private PersonRepository personRepository;
+    private final PersonRepository personRepository;
 
-    public PersonController(PersonRepository PersonRepository) {
+    private final PersonProducer personProducer;
+
+    public PersonController(PersonRepository PersonRepository, PersonProducer personProducer) {
         this.personRepository = PersonRepository;
+        this.personProducer = personProducer;
     }
 
     @Override
@@ -37,12 +40,16 @@ public class PersonController implements PersonOperations {
 
     @Override
     public HttpResponse<Person> post(@Body Person person) {
-        return HttpResponse.created(personRepository.create(person).blockingGet());
+        Person created = personRepository.create(person).blockingGet();
+        personProducer.sendPerson(created.getId(), created);
+        return HttpResponse.created(created);
     }
 
     @Override
     public HttpResponse<Person> put(@PathVariable String id, @Body Person person) {
-        return HttpResponse.ok(personRepository.update(person).blockingGet());
+        Person updatedPerson = personRepository.update(person).blockingGet();
+        personProducer.sendPerson(updatedPerson.getId(), updatedPerson);
+        return HttpResponse.ok(updatedPerson);
     }
 
     @Override

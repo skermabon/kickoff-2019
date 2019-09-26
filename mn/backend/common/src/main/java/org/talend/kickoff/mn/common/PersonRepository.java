@@ -44,7 +44,7 @@ public class PersonRepository {
 
     public Single<Person> update(Person Person) {
         return Single
-                .fromPublisher(getCollection().replaceOne(Filters.eq("_id", Person.getId()), Person))
+                .fromPublisher(getCollection().findOneAndReplace(Filters.eq("_id", Person.getId()), Person))
                 .map(success -> Person);
     }
 

@@ -44,7 +44,7 @@ public class ComicbookRepository {
 
     public Single<Comicbook> update(Comicbook comicbook) {
         return Single
-                .fromPublisher(getCollection().replaceOne(Filters.eq("_id", comicbook.getId()), comicbook))
+                .fromPublisher(getCollection().findOneAndReplace(Filters.eq("_id", comicbook.getId()), comicbook))
                 .map(success -> comicbook);
     }
 

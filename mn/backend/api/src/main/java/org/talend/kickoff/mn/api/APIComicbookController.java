@@ -14,6 +14,7 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.PathVariable;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.Put;
+import org.talend.kickoff.mn.common.Person;
 
 @Controller("/api/v1/comicbooks/")
 public class APIComicbookController {
@@ -47,4 +48,10 @@ public class APIComicbookController {
     public HttpResponse delete(@PathVariable String id) {
         return client.delete(id);
     }
+
+    @Post(value = "/{comicbookId}/writer/", consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON)
+    HttpResponse<Comicbook> addWriter(@PathVariable String comicbookId, @Body Person person) {
+        return client.addWriter(comicbookId, person);
+    }
+
 }

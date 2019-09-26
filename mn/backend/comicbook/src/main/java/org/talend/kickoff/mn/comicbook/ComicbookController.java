@@ -4,6 +4,7 @@ import java.util.List;
 
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Post;
+import io.reactivex.Maybe;
 import org.talend.kickoff.mn.common.Comicbook;
 import org.talend.kickoff.mn.common.ComicbookOperations;
 import org.talend.kickoff.mn.common.ComicbookRepository;
@@ -13,14 +14,19 @@ import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.PathVariable;
 import org.talend.kickoff.mn.common.Person;
+import org.talend.kickoff.mn.common.PersonClient;
+import org.talend.kickoff.mn.common.Role;
 
 @Controller("/comicbook/v1/comicbooks")
 public class ComicbookController implements ComicbookOperations {
 
-    private ComicbookRepository comicbookRepository;
+    private final ComicbookRepository comicbookRepository;
 
-    public ComicbookController(ComicbookRepository comicbookRepository) {
+    private final PersonClient personClient;
+
+    public ComicbookController(ComicbookRepository comicbookRepository, PersonClient personClient) {
         this.comicbookRepository = comicbookRepository;
+        this.personClient = personClient;
     }
 
     @Override
@@ -54,8 +60,17 @@ public class ComicbookController implements ComicbookOperations {
         return HttpResponse.noContent();
     }
 
-    @Post(value = "/{comicbookId}/writer/", consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON)
-    public HttpResponse addWriter(@PathVariable String id, @Body Person person) {
-
+    @Override
+    public HttpResponse<Comicbook> addWriter(@PathVariable String comicbookId, @Body Person person) {
+        if (person.getId() == null) {
+            person = personClient.post(person).body();
+        }
+        else {
+            person = personClient.get(person.getId()).body();
+        }
+        Comicbook comicbook = comicbookRepository.get(comicbookId).blockingGet();
+        comicbook.addPerson(Role.WRITER, person);
+        comicbook = comicbookRepository.update(comicbook).blockingGet();
+        return HttpResponse.ok(comicbook);
     }
 }
