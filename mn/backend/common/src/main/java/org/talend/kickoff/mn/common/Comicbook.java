@@ -1,9 +1,12 @@
 package org.talend.kickoff.mn.common;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Comicbook {
 
@@ -27,6 +30,18 @@ public class Comicbook {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @JsonIgnore
+    public List<Person> getAllPersons() {
+        if (persons == null  || persons.isEmpty()) {
+            return Collections.EMPTY_LIST;
+        }
+        ArrayList<Person> list = new ArrayList<>();
+        for (String key: persons.keySet()) {
+            list.addAll(persons.get(key));
+        }
+        return list;
     }
 
     public Map<String, List<Person>> getPersons() {

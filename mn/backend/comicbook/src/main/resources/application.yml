@@ -3,7 +3,11 @@ micronaut:
     name: comicbook
   server:
     port: 7001
-
+  http:
+    services:
+      person:
+        urls:
+          - http://localhost:7002/
 mongodb:
   uri: mongodb://kickoff:kickoff@localhost:27017/kickoff-2019
 

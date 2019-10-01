@@ -100,6 +100,10 @@
       <version>0.1</version>
       <scope>compile</scope>
     </dependency>
+      <dependency>
+          <groupId>io.micronaut.configuration</groupId>
+          <artifactId>micronaut-kafka</artifactId>
+      </dependency>
   </dependencies>
   <build>
     <plugins>
