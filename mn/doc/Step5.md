@@ -2,6 +2,12 @@
 
 ## Step 5 - Messages between microservices
 
+Checkout the step5-start branch.
+
+```shell
+$ git checkout step5-start
+```
+
 We use Kafka for communication between microservices.
 
 We complete the comicbook document by adding persons that contribute to this comicbook as author, artist, penciller, letterer, etc...
@@ -73,4 +79,43 @@ public class PersonListener {
     }
 }
 ```
+
+### Run and tests
+
+Now we can run a docker-compose of a kafka and a zookeeper docker images, present in the branch.
+
+```shell
+$ docker-compose -f kafka.yaml
+```
+
+And we launch all services. We can add a person to a comicbook.
+
+```shell
+curl -X POST \
+  'http://localhost:7001/comicbook/v1/comicbooks/b9f60ef3-2497-40c7-b96d-b5ebe2f6d9d9/writer/?=' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{"id": "5f4cdbed-62ba-44e7-9f1e-9959277cfada", "firstname":"Jerry", "lastname": "Siegel"}'
+```
+
+If I update the person like this.
+
+```shell
+curl -X PUT \
+  http://localhost:7002/person/v1/persons/5f4cdbed-62ba-44e7-9f1e-9959277cfada \
+  -H 'Content-Type: application/json' \
+  -d '{"id":"5f4cdbed-62ba-44e7-9f1e-9959277cfada", "firstname":"JERRY", "lastname":"SIEGEL"}'
+```
+
+Then, when I get this comicbook, the person was updated.
+
+```shell
+curl -X GET \
+  http://localhost:7001/comicbook/v1/comicbooks/b9f60ef3-2497-40c7-b96d-b5ebe2f6d9d9
+```
+
+### Exercice
+
+Now, when you add 
+
 
