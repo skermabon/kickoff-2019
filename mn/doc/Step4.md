@@ -128,7 +128,7 @@ And now, add the API endpoint to POST a comicbook.
 
 ### Solution
 
-Checkout the branch step3-final.
+Checkout the branch step4-final.
 
 ```shell
 $ git checkout step4-final
