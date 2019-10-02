@@ -2,7 +2,7 @@
 
 ## Step 4 - API call other services
 
-The API service will call Person and Comicbook services. Checkout the step4-start branch of the project. Get the branch `step4-start`.
+The API service will call Person and Comicbook services. Checkout the step4-start branch of the project.
 
 ```shell
 $ git checkout step4-start
@@ -19,17 +19,7 @@ public interface ComicbookOperations {
     @Get(value = "/", produces = MediaType.APPLICATION_JSON)
     HttpResponse<List<Comicbook>> list();
 
-    @Get(value = "/{id}", produces = MediaType.APPLICATION_JSON)
-    HttpResponse<Comicbook> get(@PathVariable String id);
-
-    @Post(value = "/", consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON)
-    HttpResponse<Comicbook> post(@Body Comicbook person);
-
-    @Put(value = "/{id}", consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON)
-    HttpResponse<Comicbook> put(@PathVariable String id, @Body Comicbook comicbook);
-
-    @Delete(value = "/{id}")
-    HttpResponse delete(@PathVariable String id);
+    [...]
 }
 ```
 
@@ -50,35 +40,12 @@ public class ComicbookController implements ComicbookOperations {
         return HttpResponse.ok(comicbookRepository.list().blockingGet());
     }
 
-    @Override
-    public HttpResponse<Comicbook> get(@PathVariable String id) {
-        Comicbook comicbook = comicbookRepository.get(id).blockingGet();
-        if (comicbook != null) {
-            return HttpResponse.ok(comicbook);
-        } else {
-            return HttpResponse.notFound();
-        }
-    }
-
-    @Override
-    public HttpResponse<Comicbook> post(@Body Comicbook person) {
-        return HttpResponse.created(comicbookRepository.create(person).blockingGet());
-    }
-
-    @Override
-    public HttpResponse<Comicbook> put(@PathVariable String id, @Body Comicbook comicbook) {
-        return HttpResponse.ok(comicbookRepository.update(comicbook).blockingGet());
-    }
-
-    @Override
-    public HttpResponse delete(@PathVariable String id) {
-        comicbookRepository.delete(id);
-        return HttpResponse.noContent();
-    }
-}
+    [...]
 ```
 
-### We add the Comicbook client interface and declare the service used (comicbook) in configuration
+### We add the Comicbook client.
+
+The client is an interface that extends the previous operation interface. We set the service we will use, and the path.
 
 ```java
 @Client(id = "comicbook", path = "/comicbook/v1/comicbooks")
@@ -86,6 +53,8 @@ public interface ComicbookClient extends ComicbookOperations {
 
 }
 ```
+
+We add configuration to use this client
 
 ```yaml
 micronaut:

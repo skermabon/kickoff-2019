@@ -17,20 +17,20 @@ A comicbook document look like this:
 ```json
 {
     "_id" : "b9f60ef3-2497-40c7-b96d-b5ebe2f6d9d9",
-    "name" : "Action Comics",
+    "name" : "Northstar",
     "persons" : {
         "WRITER" : [ 
             {
                 "_id" : "67a4980e-e0d4-4355-be1d-96b5cd67064e",
-                "firstname" : "Jerry",
-                "lastname" : "Siegel"
+                "firstname" : "Chris",
+                "lastname" : "Claremont"
             }
         ],
         "ARTIST" : [ 
             {
                 "_id" : "67a4980e-e0d4-4355-be1d-96b5cd67064e",
-                "firstname" : "Joe",
-                "lastname" : "Shuster"
+                "firstname" : "John",
+                "lastname" : "Byrne"
             }
         ]
     }
@@ -116,6 +116,5 @@ curl -X GET \
 
 ### Exercice
 
-Now, when you add 
-
+Now, when you add a comicbook with a person without id, the comicbook service call the person service to create this person. And a message send by the person service is receive by the comicbook service that update document to add the id for person with the same firstname and lastname.
 

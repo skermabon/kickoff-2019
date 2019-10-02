@@ -2,7 +2,10 @@
 
 ## Step 2 : Create project and run a service
 
-I create the Micronaut project (only maven modules that are microservice, not non microservice modules), on an empty directory.
+### Create the project
+
+We create the Micronaut project (only maven modules that are microservice, not non microservice modules), on an empty directory.
+
 ```shell
 mn create-federation /
 --build=maven /
@@ -21,11 +24,15 @@ $ git checkout step2
 $ cd kickoff-2019/mn
 ```
 
+### Build the project
+
 Build by Intellij or by maven: 
 ```shell
 $ cd backend
 $ mvn clean install
 ```
+
+### Run as java application
 
 Run a class Application (for example the Application in maven module comicbook) or run in a shell:
 ```shell
@@ -33,10 +40,13 @@ $ cd comicbook
 $ java -jar target/comicbook-0.1.jar
 ```
 
+### Build and run a native application
+
 Build a native image with GraalVM:
 * Use GraalVM as current JVM: `sdk use java 19.2.0-grl`
 * Install the GraalVM tool, native-image, that generate native image from a jar: `gu install native-image` 
 * Create a native image: `native-image --no-server -cp target/comicbook-0.1.jar` if you have the following error:
+
 ```shell
 Error: Basic header file missing (<zlib.h>). Make sure headers are available on your system.
 Error: Use -H:+ReportExceptionStackTraces to print stacktrace of underlying exception
